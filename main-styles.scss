@@ -1,0 +1,29 @@
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,600&display=swap');
+
+// $family-sans-serif: "Nunito", sans-serif;
+
+/* GLOBAL STYLES */
+html, body {
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+
+    border-width: 2px;
+
+    background-image: url('src/assets/background.svg');
+    background-size: cover;
+
+    overflow-y: auto !important;
+}
+
+input {
+    box-shadow: none;
+    border:1px solid #cccccc;
+}
+
+// html {
+//     background-image: url('src/assets/background.svg');
+//     background-size: cover;
+
+//     overflow-y: auto !important;
+// }
