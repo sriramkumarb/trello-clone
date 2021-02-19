@@ -8,6 +8,8 @@ const { Board, Task } = require('../db/models/index')
 
 router.use(bodyParser.json());
 
+// Board Routes
+
 // GET Request
 
 router.get('/boards', (req, res) => {
@@ -53,6 +55,67 @@ router.delete('/boards/:id', (req, res) => {
         _id: req.params.id
     }).then((removedBoardDetais) => {
         res.send(removedBoardDetais);
+    })
+})
+
+// Tasks Routes
+
+// GET Requests
+
+router.get('/boards/:boardId/tasks', (req, res) => {
+    // return all the tasks that beloged to a specific board
+    Task.find({
+        _boardId: req.params.boardId
+    }).then((tasks) => {
+        res.send(tasks);
+    })
+})
+
+router.get('/boards/:boardId/tasks/:taskId', (req, res) => {
+    Task.findById({
+        _id: req.params.taskId,
+        _boardId: req.params.boardId
+    }).then((task) => {
+        res.send(task)
+    })
+})
+
+// POST Requests
+
+router.post('/boards/:boardId/tasks', (req, res) => {
+    // create a new tasks in the board specified by the boardId
+    let newTask = new Task({
+        title: req.body.title,
+        _boardId: req.params.boardId,
+    });
+    newTask.save().then((newTaskDetails) => {
+        res.send(newTaskDetails);
+    })
+})
+
+// PUT Requests
+
+router.put('/boards/:boardId/tasks/:taskId', (req, res) => {
+    // update exsisting task by using taskId
+    Task.findByIdAndUpdate({
+        _id: req.params.taskId,
+        _boardId: req.params.boardId
+    }, {
+        $set: req.body
+    }).then(() => {
+        res.sendStatus(200)
+    })
+})
+
+// DELETE Requests
+
+router.delete('/boards/:boardId/tasks/:taskId', (req, res) => {
+    // delete exisisting task by using taskId
+    Task.findByIdAndDelete({
+        _id: req.params.taskId,
+        _boardId: req.params.boardId
+    }).then((removeTaskDetails) => {
+        res.send(removeTaskDetails)
     })
 })
 
