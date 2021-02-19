@@ -6,6 +6,10 @@ const bodyParser = require('body-parser');
 
 const { Board, Task } = require('../db/models/index')
 
+const cors = require('cors')
+
+router.use(cors()) // Use this after the variable declaration
+
 router.use(bodyParser.json());
 
 // Board Routes
