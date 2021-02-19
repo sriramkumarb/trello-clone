@@ -6,6 +6,10 @@ const bodyParser = require('body-parser');
 
 const { Board, Task } = require('../db/models/index')
 
+const cors = require('cors')
+
+router.use(cors()) // Use this after the variable declaration
+
 router.use(bodyParser.json());
 
 // Board Routes
@@ -16,6 +20,7 @@ router.get('/boards', (req, res) => {
     // return an array of all the boards in the DB
     Board.find({}).then((boards) => {
         res.send(boards);
+        console.log(boards)
     })
 })
 
