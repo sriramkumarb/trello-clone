@@ -15,7 +15,12 @@ html, body {
 
     overflow-y: auto !important;
 }
+.mat-drawer-container {
+    /* background-color: #fafafa; */
+    background-image: url('src/assets/background.svg');
 
+    // color: rgba(0,0,0,.87);
+}
 // html {
 //     background-image: url('src/assets/background.svg');
 //     background-size: cover;
