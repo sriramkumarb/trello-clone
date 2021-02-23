@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    [mode]="(isHandset$ | async) ? 'over' : 'side'">
     <mat-toolbar color="danger">
       <button id="myBtn" type="button" aria-label="close sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav close icon">close</mat-icon>
