@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Board } from 'src/app/models/board.model';
 import { Column } from 'src/app/models/column.model';
-import { TaskService } from '../../services'
+import { BoardService } from '../../services'
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
@@ -12,8 +12,8 @@ export class MainViewComponent implements OnInit {
 
   boards = [];
 
-  constructor(private taskService: TaskService) {
-    this.taskService.getBoards().subscribe((res: any) => {
+  constructor(private boardService: BoardService) {
+    this.boardService.getBoards().subscribe((res: any) => {
       this.boards = res;
     })
   }
