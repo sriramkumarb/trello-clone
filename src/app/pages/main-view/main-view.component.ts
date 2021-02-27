@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Board } from 'src/app/models/board.model';
-import { Column } from 'src/app/models/column.model';
 import { BoardService } from '../../services'
+import { TaskService } from '../../services'
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
@@ -11,38 +10,27 @@ import { BoardService } from '../../services'
 export class MainViewComponent implements OnInit {
 
   boards = [];
+  tasks = [];
 
-  constructor(private boardService: BoardService) {
+  constructor(private boardService: BoardService,
+    private taskService: TaskService) {
     this.boardService.getBoards().subscribe((res: any) => {
-      this.boards = res;
+      this.boards = this.boards.concat(res)
+
+      for (var i = 0; i < this.boards.length; i++) {
+
+        var x = this.boards[i]._id
+
+        if (x != null) {
+
+          this.taskService.getTasks(x).subscribe((res: any) => {
+            this.tasks = this.tasks.concat(res)
+          })
+
+        }
+      }
     })
   }
-
-  // board: Board = new Board('Test Board', [
-  //   new Column('Ideas', [
-  //     "Some random idea",
-  //     "This is another random idea",
-  //     "build an awesome application"
-  //   ]),
-  //   new Column('Research', [
-  //     "Lorem ipsum",
-  //     "foo",
-  //     "This was in the 'Research' column"
-  //   ]),
-  //   new Column('Todo', [
-  //     'Get to work',
-  //     'Pick up groceries',
-  //     'Go home',
-  //     'Fall asleep'
-  //   ]),
-  //   new Column('Done', [
-  //     'Get up',
-  //     'Brush teeth',
-  //     'Take a shower',
-  //     'Check e-mail',
-  //     'Walk dog'
-  //   ])
-  // ]);
 
   ngOnInit(): void {
   }

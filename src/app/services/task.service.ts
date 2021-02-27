@@ -12,22 +12,22 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  // Boards API
+  // Tasks API
 
-  getBoards() {
-    return this.http.get(this.API_URL + '/boards');
+  getTasks(taskData) {
+    return this.http.get(this.API_URL + '/boards/' + taskData + '/tasks');
   }
 
-  createBoards(boardName) {
-    return this.http.post(this.API_URL + '/boards', { boardName });
-  }
+  // createBoards(boardName) {
+  //   return this.http.post(this.API_URL + '/boards', { boardName });
+  // }
 
-  updateBoards(boardData) {
-    return this.http.put(this.API_URL + '/boards/' + boardData.boardId, { boardData });
-  }
+  // updateBoards(boardData) {
+  //   return this.http.put(this.API_URL + '/boards/' + boardData.boardId, { boardData });
+  // }
 
-  deleteBoards(boardData) {
-    return this.http.delete(this.API_URL + '/boards' + boardData.boardId);
-  }
+  // deleteBoards(boardData) {
+  //   return this.http.delete(this.API_URL + '/boards' + boardData.boardId);
+  // }
 
 }
